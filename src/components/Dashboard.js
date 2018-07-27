@@ -1,9 +1,12 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { voteCounter } from '../utils/helper'
+import { questionVotes, questionAnswered } from '../utils/helper'
 import Question from './Question'
 
 class Dashboard extends Component {
+    state = {
+        answered: true
+    }
     render() {
         return (
             <div>
@@ -21,9 +24,11 @@ class Dashboard extends Component {
     }
 }
 
-function mapStateToProps({ questions }) {
+function mapStateToProps({ authedUser, questions }) {
     return {
-        questionIds: Object.keys(questions).sort((a,b) => voteCounter(questions[b]) - voteCounter(questions[a]) )
+        questionIds: Object.keys(questions)
+        .filter((id) => questionAnswered(authedUser, questions[id])==true )
+        .sort((a,b) => questionVotes(questions[b]).length - questionVotes(questions[a]).length )
     }
 }
 

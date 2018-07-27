@@ -10,19 +10,28 @@ class Question extends Component {
             return <p> This question doesn't exist </p>
         }
 
-        const {name, avatar} = question
+        const {name, avatar, optionOneText, optionTwoText, votes,answered} = question
 
         return (
             <div className='question'>
-                <img
-                    src={avatar}
-                    alt={`Avatar of ${name}`}
-                    className='avatar'
-                />
-                <div className='quetion-info'>
-                    <span>{name}</span>
+                <div>
+                    <h3 className='center'>{ name }</h3> 
+                    <img
+                        src={avatar}
+                        alt={`Avatar of ${name}`}
+                        className='avatar'
+                    />
+                    <h4 className='center'># votes {votes}</h4> 
+                    <h4 className='center'>answered: {answered}</h4>
                 </div>
-              { name }
+                <hr />
+                <div className='quetion-info'>
+                    <h3 >Options</h3> 
+                    <ul>
+                        <li>One: {optionOneText}</li>
+                        <li>Two: {optionTwoText}</li>
+                    </ul>
+                </div>
             </div>
         )
     }

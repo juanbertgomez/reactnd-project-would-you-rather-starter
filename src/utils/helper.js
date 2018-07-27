@@ -11,10 +11,16 @@ export function formatQuestion (authedUser, user, question) {
         optionOneVotes: optionOne.votes.length,
         optionTwoText: optionTwo.text,
         optionTwoVotes: optionTwo.votes.length,
-        quetionTotalVotes: optionOne.votes.length + optionTwo.votes.length
+        quetionTotalVotes: optionOne.votes.length + optionTwo.votes.length,
+        votes: questionVotes(question).length,
+        answered: questionVotes(question).includes(authedUser) ? 'Yes' : 'No'
     }
 }
 
-export function voteCounter (question) {
-    return question.optionOne.votes.length + question.optionTwo.votes.length 
+export function questionVotes (question) {
+    return question.optionOne.votes.concat(question.optionTwo.votes) 
+}
+
+export function questionAnswered (authedUser, question) {
+    return questionVotes(question).includes(authedUser)
 }
