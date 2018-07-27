@@ -13,7 +13,7 @@ class App extends Component {
 
   render() {
     return (
-      <NewQuestion/>
+      <QuestionPage match={{params: {id:'loxhs1bqm25b708cmbf3g'}}}/>
     )
   }
 }

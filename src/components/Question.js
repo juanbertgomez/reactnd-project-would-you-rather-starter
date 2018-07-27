@@ -10,7 +10,7 @@ class Question extends Component {
             return <p> This question doesn't exist </p>
         }
 
-        const {name, avatar, optionOneText, optionTwoText, votes,answered} = question
+        const {name, avatar, optionOneText, optionTwoText, questionTotalVotes,answered} = question
 
         return (
             <div className='question'>
@@ -21,7 +21,7 @@ class Question extends Component {
                         alt={`Avatar of ${name}`}
                         className='avatar'
                     />
-                    <h4 className='center'># votes {votes}</h4> 
+                    <h4 className='center'># votes {questionTotalVotes}</h4> 
                     <h4 className='center'>answered: {answered}</h4>
                 </div>
                 <hr />

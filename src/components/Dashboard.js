@@ -27,7 +27,7 @@ class Dashboard extends Component {
 function mapStateToProps({ authedUser, questions }) {
     return {
         questionIds: Object.keys(questions)
-        .filter((id) => questionAnswered(authedUser, questions[id])==true )
+        .filter((id) => questionAnswered(authedUser, questions[id])===true )
         .sort((a,b) => questionVotes(questions[b]).length - questionVotes(questions[a]).length )
     }
 }
