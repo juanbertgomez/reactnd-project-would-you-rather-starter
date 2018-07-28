@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { formatQuestion } from '../utils/helper';
+import { formatQuestion } from '../utils/helper'
 
 class Question extends Component {
     render () {
-        console.log(this.props)
+        //console.log(this.props)
         const { question } = this.props
         if (question == null ){
             return <p> This question doesn't exist </p>

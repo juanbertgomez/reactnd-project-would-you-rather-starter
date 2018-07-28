@@ -4,7 +4,7 @@ import { formatQuestion } from '../utils/helper';
 
 class QuestionPage extends Component {
     render () {
-        const { id, question } = this.props
+        const { question } = this.props
         if (question == null ){
             return <p> This question doesn't exist </p>
         }
@@ -32,7 +32,7 @@ class QuestionPage extends Component {
                             <li>{optionOneVotes} from  {questionTotalVotes}</li>
                         </ul>
                         <ul className='question'>
-                            <li>One: {optionTwoText}</li>
+                            <li>Two: {optionTwoText}</li>
                             <li>{optionTwoVotes} from  {questionTotalVotes}</li>
                         </ul>
                     </ul>

@@ -5,6 +5,7 @@ import Dashboard from './Dashboard'
 import Question from './Question'
 import QuestionPage from './QuestionPage'
 import NewQuestion from './NewQuestion'
+import LeaderBoard from './LeaderBoard';
 
 class App extends Component {
   componentDidMount(){
@@ -13,7 +14,7 @@ class App extends Component {
 
   render() {
     return (
-      <QuestionPage match={{params: {id:'loxhs1bqm25b708cmbf3g'}}}/>
+      <LeaderBoard/>
     )
   }
 }

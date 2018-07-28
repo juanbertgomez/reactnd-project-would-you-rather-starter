@@ -16,6 +16,18 @@ export function formatQuestion (authedUser, user, question) {
     }
 }
 
+export function formatUser (user) {
+    const {name, avatarURL, answers, questions} = user
+
+    return {
+        name,
+        avatar: avatarURL,
+        answeredQuestions: Object.keys(answers).length,
+        userQuestions: questions.length,
+        totalPoints: Object.keys(answers).length + questions.length
+    }
+}
+
 export function questionVotes (question) {
     return question.optionOne.votes.concat(question.optionTwo.votes) 
 }
