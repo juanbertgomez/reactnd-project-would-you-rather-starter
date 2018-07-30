@@ -12,7 +12,7 @@ class QuestionPage extends Component {
         const {name, avatar, optionOneText, optionOneVotes, optionTwoText, optionTwoVotes, questionTotalVotes, answered} = question 
 
         return(
-            <div className='question'>
+            <div className='card'>
                 <div>
                     <h3 className='center'>Question asqued by { name }</h3> 
                     <img
@@ -27,11 +27,11 @@ class QuestionPage extends Component {
                 <div className='quetion-info'>
                     <h3 >Options</h3> 
                     <ul>  
-                        <ul className='question'>
+                        <ul className='card'>
                             <li>One: {optionOneText}</li>
                             <li>{optionOneVotes} from  {questionTotalVotes}</li>
                         </ul>
-                        <ul className='question'>
+                        <ul className='card'>
                             <li>Two: {optionTwoText}</li>
                             <li>{optionTwoVotes} from  {questionTotalVotes}</li>
                         </ul>

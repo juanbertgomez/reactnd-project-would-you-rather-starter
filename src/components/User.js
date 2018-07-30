@@ -14,7 +14,7 @@ class User extends Component {
         const {name, avatar, answeredQuestions, userQuestions, totalPoints} = user
 
         return (
-            <div className='question'>
+            <div className='user'>
                 <div>
                     <h3 className='center'>{ name }</h3> 
                     <img

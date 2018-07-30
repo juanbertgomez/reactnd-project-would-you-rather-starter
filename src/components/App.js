@@ -5,7 +5,8 @@ import Dashboard from './Dashboard'
 import Question from './Question'
 import QuestionPage from './QuestionPage'
 import NewQuestion from './NewQuestion'
-import LeaderBoard from './LeaderBoard';
+import LeaderBoard from './LeaderBoard'
+import SigIn from './SignIn'
 
 class App extends Component {
   componentDidMount(){
@@ -14,7 +15,7 @@ class App extends Component {
 
   render() {
     return (
-      <LeaderBoard/>
+      <SigIn/>
     )
   }
 }

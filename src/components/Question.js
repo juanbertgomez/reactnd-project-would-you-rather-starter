@@ -13,7 +13,7 @@ class Question extends Component {
         const {name, avatar, optionOneText, optionTwoText, questionTotalVotes,answered} = question
 
         return (
-            <div className='question'>
+            <div className='card'>
                 <div>
                     <h3 className='center'>{ name }</h3> 
                     <img

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import User from './User'
-import { formatQuestion, formatUser } from '../utils/helper';
+import { formatUser } from '../utils/helper';
 
 
 class LeaderBoard extends Component {
