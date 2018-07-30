@@ -8,6 +8,7 @@ class Dashboard extends Component {
         answered: true
     }
     render() {
+        
         return (
             <div>
                 <h3 className='center'> Questions</h3>

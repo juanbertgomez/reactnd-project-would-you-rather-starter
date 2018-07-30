@@ -39,6 +39,7 @@ class Question extends Component {
 
 function mapSateToProps({authedUser, users, questions }, {id}) {
     const question = questions[id]
+
     return {
         question: question ?
         formatQuestion (authedUser, users[question.author], question, )

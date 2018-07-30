@@ -4,10 +4,10 @@ import { NavLink } from 'react-router-dom'
 
 class Nav extends Component  {
     render() {
-        const { userName, avatar} = this.props
+        const { name, avatar } = this.props
         return (
             <nav className='nav'>
-                <ul align="left">
+                <ul>
                     <li>
                         <NavLink to='/' exact activeClassName='active'>
                             Home
@@ -23,6 +23,14 @@ class Nav extends Component  {
                             Leader Board
                         </NavLink>
                     </li>
+                    <li>                        
+                        Hello {name} 
+                        <img
+                        src={avatar}
+                        alt={`Avatar of ${name}`}
+                        className='avatar'
+                        />
+                    </li>
                     <li>
                         <NavLink to='/signin' exact activeClassName='active'>
                             Logout
@@ -34,10 +42,12 @@ class Nav extends Component  {
     }
 }
 
-function mapStateToProps({authedUser, users}) {
+function mapStateToProps({ authedUser, users }) {
+    const user = users[authedUser]
     return {
-            //userName: users[authedUser].name,
-            //avatar: users[authedUser].avatarURL
+        name: user ? user.name :  null,
+        avatar: user ? user.avatarURL : null
+
     }
 }
 

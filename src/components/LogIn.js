@@ -1,30 +1,36 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { questionVotes, questionAnswered } from '../utils/helper'
+import Question from './Question'
+import { formatUser } from '../utils/helper'
 
-class logIn extends Component {
-    render () {
+class Dashboard extends Component {
+    state = {
+        answered: true
+    }
+    render() {
+        const { name } = this.props
 
-        const { name, avatar} = this.props
-
+        
+        console.log(this.props)
         return (
             <div>
-                <p>Hello { name }</p> 
-                <img
-                    src={avatar}
-                    alt={`Avatar of ${name}`}
-                    className='avatar'
-                />
+                <div>
+                    { name }
+                </div>
             </div>
         )
     }
 }
 
-function mapStateToProps({authedUser, users}) {
+function mapStateToProps({ authedUser, users }) {
+    const user = users[authedUser]
     return {
-            name: users[authedUser].name,
-            avatar: users[authedUser].avatarURL
+        name: user ?
+        formatUser(user).name
+        : null
+
     }
 }
 
-
-export default connect(mapStateToProps)(logIn)
+export default connect(mapStateToProps)(Dashboard)
