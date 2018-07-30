@@ -17,15 +17,10 @@ a {
 }
 
 .btn {
-  text-transform: uppercase;
-  margin: 35px auto;
-  padding: 10px;
-  border: 1px solid rgba(0,0,0,.29);
-  cursor: pointer;
-  background: #fff;
-  font-size: 16px;
-  width: 250px;
-  position: relative;
+  width: 79px;
+  height: 15px;
+  border-radius: 2px;
+  background-color: #3d81ff;
 }
 
 .btn:hover {
@@ -80,9 +75,10 @@ li {
   padding: 10px;
   display: flex;
   margin: 0 auto;
-  border: 1px solid #dad7d7;
-  border-radius: 3px;
   cursor: pointer;
+  border-radius: 2px;
+  background-color: #ffffff;
+  box-shadow: 1px 3px 9.5px -4px rgba(0, 0, 0, 0.5);
 }
 
 .question-info {
@@ -160,4 +156,23 @@ li {
   margin-top: 10px;
   font-size: 20px;
   color: #C3392A;
+}
+
+
+.question-title {
+  font-family: Helvetica;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #000000;
+}
+.question-text {
+  font-family: Helvetica;
+  font-weight: 300;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
 }
