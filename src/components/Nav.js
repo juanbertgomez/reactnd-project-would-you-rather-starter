@@ -36,8 +36,8 @@ class Nav extends Component  {
 
 function mapStateToProps({authedUser, users}) {
     return {
-            userName: 'users[authedUser].name',
-            avatar: 'users[authedUser].avatarURL'
+            //userName: users[authedUser].name,
+            //avatar: users[authedUser].avatarURL
     }
 }
 

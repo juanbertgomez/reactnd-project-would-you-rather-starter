@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { formatQuestion } from '../utils/helper'
 
@@ -10,10 +11,10 @@ class Question extends Component {
             return <p> This question doesn't exist </p>
         }
 
-        const {name, avatar, optionOneText, optionTwoText, questionTotalVotes,answered} = question
+        const {id, name, avatar, optionOneText, optionTwoText, questionTotalVotes,answered} = question
 
         return (
-            <div className='card'>
+            <Link to={`/question/${id}`} className='card'>
                 <div>
                     <h3 className='center'>{ name }</h3> 
                     <img
@@ -24,7 +25,6 @@ class Question extends Component {
                     <h4 className='center'># votes {questionTotalVotes}</h4> 
                     <h4 className='center'>answered: {answered}</h4>
                 </div>
-                <hr />
                 <div className='quetion-info'>
                     <h3 >Options</h3> 
                     <ul>
@@ -32,7 +32,7 @@ class Question extends Component {
                         <li>Two: {optionTwoText}</li>
                     </ul>
                 </div>
-            </div>
+            </Link>
         )
     }
 }
