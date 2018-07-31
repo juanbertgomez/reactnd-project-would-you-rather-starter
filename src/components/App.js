@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { handleInitialData } from '../actions/shared'
-import Nav from './Nav'
+import NavBar from './NavBar'
 import Dashboard from './Dashboard'
 import QuestionPage from './QuestionPage'
 import NewQuestion from './NewQuestion'
@@ -19,7 +19,7 @@ class App extends Component {
     return (
       <Router>
         <div className='container'>
-          <Nav/>
+          <NavBar/>
           <div>
             <Route path='/signin' component={SigIn}/>
             <Route path='/' exact component={Dashboard}/>
