@@ -10,11 +10,9 @@ export function formatQuestion (authedUser, user, question) {
         optionOneText: optionOne.text,
         optionOneVotes: optionOne.votes.length,
         hasVotedOne: optionOne.votes.includes(authedUser),
-        userVoteOne: optionOne.votes.includes(authedUser) ? 'success' : 'danger',
         optionTwoText: optionTwo.text,
         optionTwoVotes: optionTwo.votes.length,
-        hasVotedOne: optionOne.votes.includes(authedUser), 
-        userVoteTwo: optionTwo.votes.includes(authedUser) ? 'success' : 'danger',
+        hasVotedTwo: optionOne.votes.includes(authedUser), 
         questionTotalVotes: questionVotes(question).length,
         answered: questionVotes(question).includes(authedUser) ? 'Yes' : 'No'
     }
