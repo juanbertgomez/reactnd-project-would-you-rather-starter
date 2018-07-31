@@ -11,15 +11,23 @@ import SigIn from './SignIn'
 import LogIn from './LogIn'
 
 class App extends Component {
+      
   componentDidMount(){
     this.props.dispatch(handleInitialData())
   }
 
+  //TODO: hide navbar when path = '/login'
+  
+
   render() {
+    const { location } = this.props
     return (
       <Router>
         <div className='container'>
-          <NavBar/>
+          {location}
+          {this.props.location !== '/login' && (
+            <NavBar/>
+          )}
           <div>
             <Route path='/signin' component={SigIn}/>
             <Route path='/' exact component={Dashboard}/>

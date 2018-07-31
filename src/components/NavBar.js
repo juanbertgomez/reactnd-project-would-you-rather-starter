@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { NavLink } from 'react-router-dom'
-import { Collapse, Nav, NavItem, MenuItem } from 'react-bootstrap'
+import { Nav, NavItem } from 'react-bootstrap'
 
 
 class NavBar extends Component  {
@@ -24,15 +23,29 @@ class NavBar extends Component  {
         const { activeKey } = this.state
         return (
             <div>
-            <Nav bsStyle="tabs"  activeKey={activeKey} onSelect={this.handleSelect}>
-                <NavItem eventKey="1" href="/">
-                    Home
-                </NavItem>
-                <NavItem eventKey="2" href="/new">
-                    New Question
-                </NavItem>
-          </Nav>
-          </div>
+                <Nav bsStyle="tabs"  activeKey={activeKey} onSelect={this.handleSelect}>
+                    <NavItem eventKey="1" href="/">
+                        Home
+                    </NavItem>
+                    <NavItem eventKey="2" href="/new">
+                        New Question
+                    </NavItem>
+                    <NavItem eventKey="3" href="/leaders">
+                        Leader Board
+                    </NavItem>
+                    <NavItem disabled>
+                        Hello {name}
+                        <img
+                            src={avatar}
+                            alt={`Avatar of ${name}`}
+                            className='nav-avatar'
+                        />
+                    </NavItem>
+                    <NavItem eventKey="4" href="/signin">
+                        LogOut
+                    </NavItem>
+                </Nav>
+            </div>
             )
     }
 }

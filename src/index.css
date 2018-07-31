@@ -51,6 +51,12 @@ li {
   margin: 10px;
 }
 
+.nav-avatar {
+  height: 40px;
+  border-radius: 20px;
+  margin: 5px;
+}
+
 .card {
   width: 100%;
   max-width: 590px;
