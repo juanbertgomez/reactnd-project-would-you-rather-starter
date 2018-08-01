@@ -17,10 +17,10 @@ class Dashboard extends Component {
         
         return (
             <Grid>
-                <Col xs={8} md={8} xsOffset={2}>
+                <Col xs={8} md={8} xsoffset={2}>
                     <Row>
-                        <Col xs={8} md={8} xsOffset={2}>
-                            <Nav bsStyle="pills" activeKey={1} onSelect={this.handleSelect} xsOffset={4}>
+                        <Col xs={8} md={8} xsoffset={2}>
+                            <Nav bsStyle="pills" activeKey={1} onSelect={this.handleSelect} xsoffset={4}>
                                 <NavItem eventKey={1}>
                                     Un Answered
                                 </NavItem>

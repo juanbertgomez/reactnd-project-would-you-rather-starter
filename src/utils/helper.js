@@ -37,3 +37,8 @@ export function questionVotes (question) {
 export function questionAnswered (authedUser, question) {
     return questionVotes(question).includes(authedUser)
 }
+
+
+export function questionUserAnswer(authedUser, users, qId) {
+    return users[authedUser].answers[qId]
+}

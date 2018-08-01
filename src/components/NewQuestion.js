@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { handleSaveQuestion } from '../actions/shared'
 
 class NewQuestion extends Component {
     state={
@@ -16,16 +18,23 @@ class NewQuestion extends Component {
     
     handleSubmit = (e) => {
         e.preventDefault()
+        const { dispatch, authedUser } = this.props
         const { optionOne, optionTwo } =this.state
 
         //todo: Add Question to Store
+        dispatch(handleSaveQuestion({
+            optionOneText: optionOne,
+            optionTwoText: optionTwo,
+            author: authedUser
+        }))
+
         console.group('New options:')
             console.log('One: ', optionOne)
             console.log('Two: ', optionTwo)
         console.groupEnd()
         this.setState(()=>({
-            optionOne: '',
-            optionTwo: ''
+            optionOneText: '',
+            optionTwoText: ''
         }))
     }
 
@@ -66,4 +75,9 @@ class NewQuestion extends Component {
     }
 }
 
-export default NewQuestion
+function mapSatateToProp ({authedUser}) {
+    return {
+        authedUser
+    }
+}
+export default connect(mapSatateToProp)(NewQuestion)
