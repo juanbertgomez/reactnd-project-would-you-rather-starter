@@ -7,12 +7,9 @@ class sigIn extends Component {
     
     handleSelect = (e) => {
         e.preventDefault()
-        const {dispatch} = this.props
-        const selection = e.target.id
-
-        dispatch(handleAuthedUser({
-            authedUser: selection
-        }))
+        const id = e.target.id
+        //TODO: update/write the authed user
+        this.props.dispatch(handleAuthedUser(id))
     }
 
     render () {
@@ -34,7 +31,7 @@ class sigIn extends Component {
                     >
                     {userIds.map((id) => 
                         (
-                            <MenuItem id = {id}>{users[id].name} </MenuItem>
+                            <MenuItem id = {id} onClick={this.handleAuthedUser}>{users[id].name} </MenuItem>
                         ))}
                     </DropdownButton>
                 </div>

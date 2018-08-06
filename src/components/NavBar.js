@@ -8,7 +8,8 @@ class NavBar extends Component  {
     state = {
         activeKey: "1"
     }
-    // TODO: handel active tab acording to route?
+    // TODO: handel active tab acording to route? 
+    // TODO: display ot not if authed user exists
     handleSelect = (e) => {
         const activeKey = e
         console.log(activeKey)
