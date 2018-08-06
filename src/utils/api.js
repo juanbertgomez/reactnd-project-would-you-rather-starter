@@ -22,3 +22,7 @@ export function saveQuestionAnswer(info) {
 export function saveQuestion(info) {
     return _saveQuestion(info)
 }
+
+export function saveAuthedUser(info) {
+    return ''
+}

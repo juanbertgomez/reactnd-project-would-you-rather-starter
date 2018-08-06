@@ -8,9 +8,9 @@ class NavBar extends Component  {
     state = {
         activeKey: "1"
     }
-    // TODO: handel active tab
+    // TODO: handel active tab acording to route?
     handleSelect = (e) => {
-        const activeKey = e.eventKey
+        const activeKey = e
         console.log(activeKey)
 
         this.setState(() =>({

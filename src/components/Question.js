@@ -12,7 +12,7 @@ class Question extends Component {
             return <p> This question doesn't exist </p>
         }
 
-        const {id, name, avatar, optionOneText, optionTwoText, questionTotalVotes,answered} = question
+        const {id, name, avatar, optionOneText, optionTwoText} = question
 
         return (
             <Row className='question'>

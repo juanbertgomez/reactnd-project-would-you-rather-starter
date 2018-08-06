@@ -3,12 +3,11 @@ import { connect } from 'react-redux'
 import User from './User'
 import { formatUser } from '../utils/helper';
 
-
 class LeaderBoard extends Component {
     render () {
         return (
             <div>
-                <h3 className='center'> Leader Borad </h3>
+            <h3 className='center'> Leader Borad </h3>
                 <ul className='dashboard-list'>
                     {this.props.userIds.map((id) => 
                         (

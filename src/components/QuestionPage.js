@@ -30,7 +30,7 @@ class QuestionPage extends Component {
             return <p> This question doesn't exist </p>
         }
 
-        const {name, avatar, optionOneText, optionOneVotes, hasVotedOne, optionTwoText, optionTwoVotes, hasVotedTwo, questionTotalVotes, answered} = question
+        const {name, avatar, optionOneText, optionOneVotes, optionTwoText, optionTwoVotes, questionTotalVotes} = question
         
 
         return(
@@ -44,7 +44,6 @@ class QuestionPage extends Component {
                     />
                     <h4 >Asqued by { name }</h4>
                     <h3 >Would you rather?</h3>
-                    <h3 >answer  : {answer}</h3>                    
                 </Jumbotron>
                 <Panel>
                 <Panel.Body>

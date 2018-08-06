@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { questionVotes, questionAnswered } from '../utils/helper'
-import Question from './Question'
 import { formatUser } from '../utils/helper'
 import { Grid, Row, Col, ButtonToolbar, Button } from 'react-bootstrap'
 

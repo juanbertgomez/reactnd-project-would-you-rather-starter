@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { formatUser } from '../utils/helper'
 import { connect } from 'react-redux'
+import {Panel, Col, Row} from 'react-bootstrap'
 
 
 class User extends Component {
@@ -14,24 +15,29 @@ class User extends Component {
         const {name, avatar, answeredQuestions, userQuestions, totalPoints} = user
 
         return (
-            <div className='user'>
-                <div>
-                    <h3 className='center'>{ name }</h3> 
-                    <img
-                        src={avatar}
-                        alt={`Avatar of ${name}`}
-                        className='avatar'
-                    />
-                </div>
-                <hr />
-                <div className='quetion-info'>
-                    <h3 >Points: { totalPoints }</h3> 
-                    <ul>
-                        <li>Questions Answered: { answeredQuestions }</li>
-                        <li>Created Questions: { userQuestions }</li>
-                    </ul>
-                </div>
-            </div>
+            <Panel className='user'>
+            <Panel.Heading>
+              <Panel.Title componentClass="h3">{name}</Panel.Title>
+            </Panel.Heading>
+                <Panel.Body>
+                    <Row>
+                        <Col xs={2} >
+                            <img
+                            src={avatar}
+                            alt={`Avatar of ${name}`}
+                            className='avatar'
+                            />
+                        </Col>
+                        <Col xs={10} className='quetion-info'>
+                            <Row>
+                                <h3 >Points: { totalPoints }</h3> 
+                                <Col>Questions Answered: { answeredQuestions }</Col>
+                                <Col>Created Questions: { userQuestions }</Col>
+                            </Row>
+                        </Col>
+                    </Row>
+                </Panel.Body>
+            </Panel>
         )
     }
 }
