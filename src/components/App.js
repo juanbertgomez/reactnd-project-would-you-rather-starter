@@ -20,22 +20,27 @@ class App extends Component {
   
 
   render() {
-    const { location } = this.props
+    const { authedUser } = this.props
+    console.log(authedUser)
     return (
       <Router>
         <div className='container'>
-          {location}
-          {this.props.location !== '/login' && (
-            <NavBar/>
-          )}
+         { Object.keys(authedUser).length === 0 ? 
+
+         <Route path='/' component={SigIn}/>
+          : 
           <div>
-            <Route path='/signin' component={SigIn}/>
-            <Route path='/' exact component={Dashboard}/>
-            <Route path='/question/:id' component={QuestionPage}/>
-            <Route path='/new' component={NewQuestion}/>
-            <Route path='/leaders' component={LeaderBoard}/>
-            <Route path='/login' component={LogIn}/>
-          </div> 
+          <NavBar/> 
+          <Route path='/signin' component={SigIn}/>
+          <Route path='/' exact component={Dashboard}/>
+          <Route path='/question/:id' component={QuestionPage}/>
+          <Route path='/new' component={NewQuestion}/>
+          <Route path='/leaders' component={LeaderBoard}/>
+          </div>
+      }
+          
+            
+          
         </div>
       </Router>
     )
@@ -43,7 +48,7 @@ class App extends Component {
 }
 
 function mapStateToProps({authedUser}) {
-  return authedUser
+  return {authedUser: authedUser ? authedUser : null} 
 }
 
 export default connect(mapStateToProps)(App)

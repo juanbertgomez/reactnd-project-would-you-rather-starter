@@ -3,17 +3,16 @@ import { receiveUsers } from './users';
 import { receiveQuestions } from './questions';
 import { setAuthedUser } from './authedUser';
 
-const AUTHED_ID = 'sarahedo'
 const TOGGLE_QUESTION_ANSWER='TOGGLE_QUESTION_ANSWER'
 const SAVE_QUESTION='SAVE_QUESTION' 
 
 export function handleInitialData () {
     return (dispatch) => {
         return getInitialData()
-        .then(({users, questions}) => {
+        .then(({users, questions, user}) => {
             dispatch(receiveUsers(users))
             dispatch(receiveQuestions(questions))
-            dispatch(setAuthedUser(AUTHED_ID))
+            dispatch(setAuthedUser(user))
         })
     }
 }

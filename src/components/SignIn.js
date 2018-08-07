@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { MenuItem, DropdownButton } from 'react-bootstrap'
+import { MenuItem, DropdownButton, Col } from 'react-bootstrap'
 import { handleAuthedUser } from '../actions/authedUser'
 
 class sigIn extends Component {
     
-    handleSelect = (e) => {
+    handleChange = (e) => {
         e.preventDefault()
         const id = e.target.id
         //TODO: update/write the authed user
@@ -17,24 +17,24 @@ class sigIn extends Component {
         console.log(userIds)
         return (
             <div className='card'>
-                <div>
+                <Col>
                     <h3 className='center'> Hello </h3> 
-                </div>
-                <div>
+                </Col>
+                <Col>
                     <h3 className='question-title'>Welcome to the Would you rather app</h3>
                     <h3 className='question-text'>Please Signing</h3> 
                     <DropdownButton
-                    bsStyle="Primary"
+                    bsStyle="primary"
                     title="SIGN IN"
                     key="1"
                     id="1"
                     >
                     {userIds.map((id) => 
                         (
-                            <MenuItem id = {id} onClick={this.handleAuthedUser}>{users[id].name} </MenuItem>
+                            <MenuItem id = {id} onClick={this.handleChange}>{users[id].name} </MenuItem>
                         ))}
                     </DropdownButton>
-                </div>
+                </Col>
             </div>
         )
     }
