@@ -1,4 +1,4 @@
-import { saveAuthedUser } from '../utils/api'
+import { getAuthedUser } from '../utils/api'
 
 export const SET_AUTHED_USER = 'SET_AUTHED_USER'
 
@@ -9,13 +9,14 @@ export function setAuthedUser (user) {
     }
 }
 
-export function handleAuthedUser(info) {
+export function handleAuthedUser(id) {
     return (dispatch) => {
-        return saveAuthedUser(info)
-        .then(res => dispatch(setAuthedUser(res)))
-        .catch((e) => {
-            console.warn('Error in handleSaveQuestion:',e)
-            alert ('There was an error linking new question. Try again ')
+        return getAuthedUser()
+        .then((users) => {
+            const auth = Object.keys(users).filter(user => user === id)
+            auth.length === 0 ?
+            dispatch(setAuthedUser(null)):
+            dispatch(setAuthedUser(id))
         })
     }
 }

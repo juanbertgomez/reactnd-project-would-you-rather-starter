@@ -115,13 +115,11 @@ let questions = {
   },
 }
 
-let authedUser = {
-  authedUser: null
-}
 
 function generateUID () {
   return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)
 }
+
 
 export function _getUsers () {
   return new Promise((res, rej) => {
@@ -151,16 +149,6 @@ function formatQuestion ({ optionOneText, optionTwoText, author }) {
   }
 }
 
-
-export function _saveAuthedUser (user) {
-  return new Promise ((res, rej) => {
-  setTimeout(() => {
-    authedUser = {...authedUser,
-    user}
-    res(user)
-  }, 1000)
-  })
-}
 
 export function _saveQuestion (question) {
   return new Promise((res, rej) => {
