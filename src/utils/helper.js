@@ -14,7 +14,7 @@ export function formatQuestion (authedUser, user, question) {
         optionTwoVotes: optionTwo.votes.length,
         hasVotedTwo: optionOne.votes.includes(authedUser), 
         questionTotalVotes: questionVotes(question).length,
-        answered: questionVotes(question).includes(authedUser) ? 'Yes' : 'No'
+        answered: questionVotes(question).includes(authedUser)
     }
 }
 

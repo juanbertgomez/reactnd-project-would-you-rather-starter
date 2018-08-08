@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { handleInitialData } from '../actions/shared'
 import NavBar from './NavBar'
@@ -9,6 +9,7 @@ import NewQuestion from './NewQuestion'
 import LeaderBoard from './LeaderBoard'
 import SigIn from './SignIn'
 import LogIn from './LogIn'
+import NoMatch from './NoMatch'
 
 class App extends Component {
       
@@ -26,16 +27,18 @@ class App extends Component {
       <Router>
         <div className='container'>
          { Object.keys(authedUser).length === 0 ? 
-
          <Route path='/' component={SigIn}/>
           : 
           <div>
-          <NavBar/> 
-          <Route path='/signin' component={SigIn}/>
-          <Route path='/' exact component={Dashboard}/>
-          <Route path='/question/:id' component={QuestionPage}/>
-          <Route path='/new' component={NewQuestion}/>
-          <Route path='/leaders' component={LeaderBoard}/>
+          <NavBar/>
+          <Switch> 
+            <Route path='/signin' component={SigIn}/>
+            <Route path='/' exact component={Dashboard}/>
+            <Route path='/question/:id' component={QuestionPage}/>
+            <Route path='/new' component={NewQuestion}/>
+            <Route path='/leaders' component={LeaderBoard}/>
+            <Route component={NoMatch}/>
+          </Switch>  
           </div>
       }
           

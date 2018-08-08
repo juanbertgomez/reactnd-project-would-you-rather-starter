@@ -20,3 +20,15 @@ export function handleAuthedUser(id) {
         })
     }
 }
+
+export function handleUnAutheUser(id) {
+    return (dispatch) => {
+        return getAuthedUser()
+        .then((users) => {
+            const auth = Object.keys(users).filter(user => user === id)
+            auth.length === 0 ?
+            dispatch(setAuthedUser(id)):
+            dispatch(setAuthedUser({}))
+        })
+    }
+}

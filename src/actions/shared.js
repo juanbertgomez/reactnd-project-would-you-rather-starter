@@ -3,8 +3,8 @@ import { receiveUsers } from './users';
 import { receiveQuestions } from './questions';
 import { setAuthedUser } from './authedUser';
 
-const TOGGLE_QUESTION_ANSWER='TOGGLE_QUESTION_ANSWER'
-const SAVE_QUESTION='SAVE_QUESTION' 
+export const TOGGLE_QUESTION_ANSWER='TOGGLE_QUESTION_ANSWER'
+export const SAVE_QUESTION='SAVE_QUESTION' 
 
 export function handleInitialData () {
     return (dispatch) => {
@@ -16,6 +16,24 @@ export function handleInitialData () {
     }
 }
 
+function addQuestion(question) {
+    return {
+        type: SAVE_QUESTION,
+        question
+    }
+}
+
+export function handleSaveQuestion(info) {
+    return (dispatch) => {
+        
+        return saveQuestion(info)
+        .then(question => dispatch(addQuestion(question)))
+        .catch((e) => {
+            console.warn('Error in handleSaveQuestion:',e)
+            alert ('There was an error linking new question. Try again ')
+        })
+    }
+}
 
 function toggleQuestionAnswer({qid, authedUser, answer}) {
     return {
@@ -29,33 +47,14 @@ function toggleQuestionAnswer({qid, authedUser, answer}) {
 export function handleToggleQuestionAnswer(info) {
     return (dispatch) => {
         dispatch(toggleQuestionAnswer(info))
-
         return saveQuestionAnswer(info)
         .catch((e) => {
-            console.warn('Error in handleToggleQuestionAnswer: ', e)
-            dispatch(toggleQuestionAnswer(info))
-            alert('There was an error liking the tweet. Try again.')
+            console.warn('Error in handleToggleQuestionAnswer:',e)
+            alert ('There was an error linking answer. Try again ')
         })
     }
 }
 
-function QuestionAnser({optionOneText, optionTwoText, author}) {
-    return {
-        type: SAVE_QUESTION,
-        optionOneText,
-        optionTwoText,
-        author
-    }
-}
 
-export function handleSaveQuestion(info) {
-    return (dispatch) => {
-        
-        return saveQuestion(info)
-        .then(res => dispatch(QuestionAnser(res)))
-        .catch((e) => {
-            console.warn('Error in handleSaveQuestion:',e)
-            alert ('There was an error linking new question. Try again ')
-        })
-    }
-}
+
+

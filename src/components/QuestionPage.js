@@ -6,20 +6,18 @@ import { handleToggleQuestionAnswer } from '../actions/shared'
 
 class QuestionPage extends Component {
 
+
     handleVote = (answer) => (e) => {
         e.preventDefault()
-        const { dispatch, authedUser, id } = this.props
+        const { dispatch, authedUser, id, question } = this.props
 
-        //check what is happeing here, not updating DATA
-        dispatch(handleToggleQuestionAnswer({
+        question.answered?
+        alert ('You can not vote more then ones')
+        :dispatch(handleToggleQuestionAnswer({
             qid: id,
             authedUser: authedUser,
             answer: answer
         }))
-
-        this.setState({
-            answer
-        })
 
     }
 

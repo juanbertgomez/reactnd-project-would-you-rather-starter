@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { MenuItem, DropdownButton, Col } from 'react-bootstrap'
+import { MenuItem, DropdownButton, Col, Row } from 'react-bootstrap'
 import { handleAuthedUser } from '../actions/authedUser'
 
 class sigIn extends Component {
@@ -17,13 +17,12 @@ class sigIn extends Component {
         console.log(userIds)
         return (
             <div className='card'>
-                <Col>
-                    <h3 className='center'> Hello </h3> 
-                </Col>
+                <Row>
                 <Col>
                     <h3 className='question-title'>Welcome to the Would you rather app</h3>
                     <h3 className='question-text'>Please Signing</h3> 
                     <DropdownButton
+                    className='center'
                     bsStyle="primary"
                     title="SIGN IN"
                     key="1"
@@ -35,6 +34,7 @@ class sigIn extends Component {
                         ))}
                     </DropdownButton>
                 </Col>
+                </Row>
             </div>
         )
     }
