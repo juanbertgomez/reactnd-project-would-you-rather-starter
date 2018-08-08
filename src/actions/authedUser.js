@@ -2,10 +2,10 @@ import { saveAuthedUser } from '../utils/api'
 
 export const SET_AUTHED_USER = 'SET_AUTHED_USER'
 
-export function setAuthedUser (id) {
+export function setAuthedUser (user) {
     return {
         type: SET_AUTHED_USER,
-        id
+        user
     }
 }
 

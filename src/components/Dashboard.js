@@ -19,7 +19,7 @@ class Dashboard extends Component {
 
     render() {
         const {answered} = this.state 
-        console.log(answered)
+        //console.log(answered)
         return (
             <Grid>
                 <Col xs={8} md={8} xsoffset={2}>

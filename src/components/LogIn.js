@@ -10,8 +10,7 @@ class Dashboard extends Component {
     render() {
         const { name } = this.props
 
-        
-        console.log(this.props)
+        //console.log(this.props)
         return (
             <div>
                 <Grid>

@@ -7,9 +7,9 @@ class sigIn extends Component {
     
     handleChange = (e) => {
         e.preventDefault()
-        const id = e.target.id
+        const user = e.target.id
         //TODO: update/write the authed user
-        this.props.dispatch(handleAuthedUser(id))
+        this.props.dispatch(handleAuthedUser(user))
     }
 
     render () {

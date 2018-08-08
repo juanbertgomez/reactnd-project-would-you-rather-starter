@@ -32,23 +32,6 @@ class NewQuestion extends Component {
     }
 
 
-        constructor(props, context) {
-          super(props, context);
-      
-          this.handleChange = this.handleChange.bind(this);
-      
-          this.state = {
-            value: ''
-          };
-        }
-      
-        getValidationState() {
-          const length = this.state.value.length;
-          if (length > 10) return 'success';
-          else if (length > 5) return 'warning';
-          else if (length > 0) return 'error';
-          return null;
-        }
       
         handleChange = (e) => {
             const value = e.target.value
@@ -65,7 +48,6 @@ class NewQuestion extends Component {
                 <form className='new-question' onSubmit={this.handleSubmit}>
                     <FormGroup
                     controlId="formBasicText"
-                    validationState={this.getValidationState()}
                     >
                     <ControlLabel className='center'>
                         <h3 > Would you rather</h3>
