@@ -8,7 +8,6 @@ import QuestionPage from './QuestionPage'
 import NewQuestion from './NewQuestion'
 import LeaderBoard from './LeaderBoard'
 import SigIn from './SignIn'
-import LogIn from './LogIn'
 import NoMatch from './NoMatch'
 
 class App extends Component {

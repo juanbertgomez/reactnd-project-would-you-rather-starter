@@ -32,7 +32,7 @@ class QuestionPage extends Component {
         
 
         return(
-            <Col xs={8} md={8} xsOffset={2}>
+            <Col xs={8} md={8} xsoffset={2}>
                 <br/>
                 <Jumbotron>
                     <img align = 'right'

@@ -19,8 +19,11 @@ class sigIn extends Component {
             <div className='card'>
                 <Row>
                 <Col>
+                    <Col xs={8} xsoffset={2}>
                     <h3 className='question-title'>Welcome to the Would you rather app</h3>
                     <h3 className='question-text'>Please Signing</h3> 
+                    </Col>
+                    <Col  xs={8} xsoffset={4}>
                     <DropdownButton
                     className='center'
                     bsStyle="primary"
@@ -33,6 +36,8 @@ class sigIn extends Component {
                             <MenuItem id = {id} onClick={this.handleChange}>{users[id].name} </MenuItem>
                         ))}
                     </DropdownButton>
+                    </Col>
+
                 </Col>
                 </Row>
             </div>
