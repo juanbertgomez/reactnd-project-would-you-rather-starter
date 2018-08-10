@@ -14,7 +14,6 @@ class sigIn extends Component {
 
     render () {
         const {userIds, users} = this.props
-        console.log(userIds)
         return (
             <div className='card'>
                 <Row>
