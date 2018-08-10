@@ -2,8 +2,9 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Nav, NavItem } from 'react-bootstrap'
 import { LinkContainer } from 'react-router-bootstrap'
-import { handleUnAutheUser } from '../actions/authedUser';
-
+import { handleUnAutheUser } from '../actions/authedUser'
+import { handleAuth } from '../utils/helper'
+import { withRouter } from 'react-router-dom'
 
 class NavBar extends Component  {
 
@@ -49,7 +50,9 @@ class NavBar extends Component  {
                             className='nav-avatar'
                         />
                     </NavItem>
-                    <NavItem eventKey={4} href="/signin">LogOut</NavItem>
+                    <NavItem eventKey={4} onClick={() => {
+                        handleAuth.signout(() => this.props.history.push('/'))
+                      }}>LogOut</NavItem>
                 </Nav>
             </div>
             )
@@ -66,4 +69,4 @@ function mapStateToProps({ authedUser, users }) {
     }
 }
 
-export default connect(mapStateToProps)(NavBar)
+export default withRouter(connect(mapStateToProps)(NavBar))

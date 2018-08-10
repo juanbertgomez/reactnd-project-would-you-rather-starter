@@ -7,53 +7,18 @@ import {
     withRouter
   } from 'react-router-dom'
 import { connect } from 'react-redux'
-import Protected from './Protected'
-
-const fakeAuth = {
-  isAuthenticated: false,
-  authenticate(cb) {
-    this.isAuthenticated = true
-    setTimeout(cb, 100) //fake async
-  },
-  signout(cb){
-    this.isAuthenticated = false
-    setTimeout(cb, 100)
-  }
-}
+import Home from './Home'
+import LogIn from './LogIn'
+import { MenuItem, DropdownButton, Col, Row } from 'react-bootstrap'
+import { handleAuth } from '../utils/helper'
 
 const Public = () => <h3> Public</h3>
 
-class Login extends Component {
-    state = { 
-        redirectToReferrer: false
-    }
-    login = () => {
-        fakeAuth.authenticate(() => {
-          this.setState(() => ({
-            redirectToReferrer: true
-          }))
-        })
-      }
-    render() {
-        const { from } = this.props.location.state || { from: { pathname: '/'}}
-        const { redirectToReferrer } = this.state
 
-        if (redirectToReferrer === true ) {
-            return <Redirect to={from}/>
-        }
-
-        return (
-            <div>
-                <p>You must log in to view the page</p>
-                <button onClick={this.login}>Log in</button>
-            </div> 
-        )
-    }
-}
 
 const PrivateRoute = ({ component: Component, ...rest}) => (
     <Route {...rest} render={(props) => (
-        fakeAuth.isAuthenticated === true
+        handleAuth.isAuthenticated === true
         ? <Component {...props}/>
         :<Redirect to={{
             pathname:'/login',
@@ -62,15 +27,16 @@ const PrivateRoute = ({ component: Component, ...rest}) => (
     )} />
 )
 
-const AuthButton = withRouter(({history}) => (
-    fakeAuth.isAuthenticated ? (
+const AuthButton = withRouter(({history}) => (    
+    handleAuth.isAuthenticated ? (
         <p> 
             Welcome! <button onClick={() => {
-        fakeAuth.signout(() => history.push('/'))
+        handleAuth.signout(() => history.push('/'))
       }}> Sign out </button>
+        <Home/>
         </p>
     ) : (
-        <p> You are not logged in.</p>
+        <p> You are not logged in.</p> 
     )
 ))
 
@@ -80,14 +46,12 @@ class Auth extends Component {
         return (
             <Router>
                 <div>
-                <AuthButton/>
                 <ul>
-                    <li><Link to="/public">Public Page</Link></li>
-                    <li><Link to="/protected">Protected Page</Link></li>
+                    <li><Link to="/dashboard">Protected Page</Link></li>
                 </ul>
                 <Route path="/public" component={Public}/>
-                <Route path="/login" component={Login}/>
-                <PrivateRoute path='/protected' component={Protected} />
+                <Route path="/login" component={LogIn}/>
+                <PrivateRoute path='/dashboard' component={Home} />
                 </div>
             </Router>
             )
@@ -95,8 +59,12 @@ class Auth extends Component {
   }
 
 
-function mapStateToProps({authedUser}) {
-  return {authedUser: authedUser ? authedUser : null} 
+function mapStateToProps({authedUser, users}) {
+  return {
+      authedUser: authedUser ? authedUser : null,
+      userIds: users ? Object.keys(users): null ,
+      users
+    } 
 }
 
 export default connect(mapStateToProps)(Auth)
