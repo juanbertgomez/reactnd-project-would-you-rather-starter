@@ -42,3 +42,15 @@ export function questionAnswered (authedUser, question) {
 export function questionUserAnswer(authedUser, users, qId) {
     return users[authedUser].answers[qId]
 }
+
+export const handleAuth = {
+    isAuthenticated: false,
+    authenticate(cb) {
+      this.isAuthenticated = true
+      setTimeout(cb, 100) //fake async
+    },
+    signout(cb){
+      this.isAuthenticated = false
+      setTimeout(cb, 100)
+    }
+  }

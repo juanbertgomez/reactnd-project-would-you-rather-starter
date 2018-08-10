@@ -2,19 +2,38 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { MenuItem, DropdownButton, Col, Row } from 'react-bootstrap'
 import { handleAuthedUser } from '../actions/authedUser'
+import {
+    Redirect
+  } from 'react-router-dom'
 
-class sigIn extends Component {
+  import { handleAuth } from '../utils/helper'
+
+  class LogIn extends Component {
     
-    handleChange = (e) => {
-        e.preventDefault()
-        const user = e.target.id
-        //TODO: update/write the authed user
-        this.props.dispatch(handleAuthedUser(user))
+    state = { 
+        redirectToReferrer: false
     }
+    login = (e) => {
 
-    render () {
+        e.preventDefault() 
+        const user = e.target.id 
+        this.props.dispatch(handleAuthedUser(user)) 
+
+        handleAuth.authenticate(() => {
+          this.setState(() => ({
+            redirectToReferrer: true
+          }))
+        })
+      }
+    render() {
         const {userIds, users} = this.props
-        console.log(userIds)
+        const { from } = this.props.location.state || { from: { pathname: '/'}}
+        const { redirectToReferrer } = this.state
+
+        if (redirectToReferrer === true ) {
+            return <Redirect to={from}/>
+        }
+
         return (
             <div className='card'>
                 <Row>
@@ -25,16 +44,13 @@ class sigIn extends Component {
                     </Col>
                     <Col  xs={8} xsoffset={4}>
                     <DropdownButton
-                    className='center'
                     bsStyle="primary"
                     title="SIGN IN"
-                    key="1"
-                    id="1"
                     >
-                    {userIds.map((id) => 
+                    {userIds ? userIds.map((id) => 
                         (
-                            <MenuItem id = {id} onClick={this.handleChange}>{users[id].name} </MenuItem>
-                        ))}
+                            <MenuItem id = {id} onClick={this.login}>{users[id].name} </MenuItem>
+                        )) : null}
                     </DropdownButton>
                     </Col>
 
@@ -44,6 +60,7 @@ class sigIn extends Component {
         )
     }
 }
+
 function mapStateToProp({users}){
     return {
         userIds: Object.keys(users),
@@ -51,4 +68,4 @@ function mapStateToProp({users}){
     }
 }
 
-export default connect(mapStateToProp)(sigIn)
+export default connect(mapStateToProp)(LogIn)

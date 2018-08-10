@@ -1,7 +1,6 @@
 import { getInitialData, saveQuestionAnswer, saveQuestion } from '../utils/api'
 import { receiveUsers } from './users';
 import { receiveQuestions } from './questions';
-import { setAuthedUser } from './authedUser';
 
 export const TOGGLE_QUESTION_ANSWER='TOGGLE_QUESTION_ANSWER'
 export const SAVE_QUESTION='SAVE_QUESTION' 
