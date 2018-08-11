@@ -12,6 +12,7 @@ import { handleInitialData } from '../actions/shared'
 import LogIn from './LogIn'
 import { Nav, NavItem } from 'react-bootstrap'
 import { handleAuth } from '../utils/helper'
+import { handleAuthedUser } from '../actions/authedUser'
 import NewQuestion from './NewQuestion'
 import Dashboard from './Dashboard'
 import QuestionPage from './QuestionPage'
@@ -28,9 +29,11 @@ const PrivateRoute = ({ component: Component, ...rest}) => (
   )} />
 )
 
-const LogOutButton = withRouter(({ history }) => (
-       
+const LogOutButton = withRouter(({ history, authedUser}) => (
+    
    <NavItem onClick={() => {
+
+      this.props.dispatch(handleAuthedUser(authedUser))
       handleAuth.signout(() => history.push('/'))
       }}>Sign out</NavItem>
     ))
@@ -39,14 +42,11 @@ class App extends Component {
       
   componentDidMount(){
     this.props.dispatch(handleInitialData())
-  }
-
-  //TODO: hide navbar when path = '/login'
-  
+  } 
 
   render() {
     const authed = handleAuth.isAuthenticated
-    const { name, avatar } = this.props
+    const { name, avatar, authedUser } = this.props
     return (
       <Router>
                 <div>
@@ -62,12 +62,14 @@ class App extends Component {
                 <LinkContainer to="/leaders">
                     <NavItem>Leaders</NavItem>
                 </LinkContainer>
+                <NavItem disabled>Hello {name}
                 <img
                     src={avatar}
                     alt={`Avatar of ${name}`}
                     className='nav-avatar'
                 />
-                <LogOutButton/>
+                </NavItem>
+                <LogOutButton authedUser = {authedUser}/>
                 </Nav>
                 </div>
                     
