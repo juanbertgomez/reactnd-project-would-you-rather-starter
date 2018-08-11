@@ -45,11 +45,12 @@ export function questionUserAnswer(authedUser, users, qId) {
 
 export const handleAuth = {
     isAuthenticated: false,
-    authenticate(cb) {
-      this.isAuthenticated = true
+    authenticate(cb, user) {
+        this.isAuthenticated = true
+
       setTimeout(cb, 100) //fake async
     },
-    signout(cb){
+    signout(cb, dispatch, handleUnAutheUser, user){
       this.isAuthenticated = false
       setTimeout(cb, 100)
     }
