@@ -52,7 +52,7 @@ class App extends Component {
                         <LinkContainer to="/dashboard">
                             <NavItem>Home</NavItem>
                         </LinkContainer>
-                        <LinkContainer to="/new">
+                        <LinkContainer to="/add">
                             <NavItem>New Question</NavItem>
                         </LinkContainer>
                         <LinkContainer to="/leaderboard">
@@ -72,7 +72,7 @@ class App extends Component {
                 <Switch>
                     <Route path="/login" component={LogIn}/>
                     <PrivateRoute path='/dashboard' component={Dashboard} />
-                    <PrivateRoute path='/new' component={NewQuestion} />
+                    <PrivateRoute path='/add' component={NewQuestion} />
                     <PrivateRoute path='/questions/:id' component={QuestionPage}/> 
                     <PrivateRoute path='/leaderboard' component={LeaderBoard}/>
                     <Redirect from='/' exact to='/dashboard'/>
