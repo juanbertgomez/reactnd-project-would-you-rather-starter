@@ -2,13 +2,17 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { handleSaveQuestion } from '../actions/shared'
 import { FormGroup, ControlLabel, FormControl,  Button } from 'react-bootstrap'
+import {
+    Redirect
+  } from 'react-router-dom'
 
 class NewQuestion extends Component {
     state={
         optionOne: '',
-        optionTwo: ''
+        optionTwo: '',
+        redirectToReferrer: false
     }
-    
+
     handleSubmit = (e) => {
         e.preventDefault()
         const { dispatch, authedUser } = this.props
@@ -27,7 +31,8 @@ class NewQuestion extends Component {
         console.groupEnd()
         this.setState(()=>({
             optionOneText: '',
-            optionTwoText: ''
+            optionTwoText: '',
+            redirectToReferrer: true
         }))
     }
 
@@ -42,8 +47,13 @@ class NewQuestion extends Component {
         }
 
     render () {
-        const { optionOne, optionTwo } = this.state
+        const { optionOne, optionTwo,redirectToReferrer } = this.state
+        const { from } = this.props.location.state || { from: { pathname: '/'}}
         
+        if (redirectToReferrer === true ) {
+            return <Redirect to={from}/>
+        }
+
         return(
                 <form className='new-question' onSubmit={this.handleSubmit}>
                     <FormGroup

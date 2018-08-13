@@ -1,15 +1,33 @@
-import React, { Component } from 'react';
-import { withRouter } from "react-router-dom";
+import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import {setAuthedUser} from '../actions/authedUser'
+import { NavItem } from 'react-bootstrap'
+import {handleUnAutheUser } from '../actions/authedUser'
+import { handleAuth } from '../utils/helper'
+import {
+    withRouter
+  } from 'react-router-dom'
 
-class Logout extends Component {
-    render () {
+class LogOut extends Component {
+
+    logout = (e) => {
+
+        e.preventDefault() 
+        this.props.dispatch(handleUnAutheUser(this.props.authedUser)) 
+
+        handleAuth.signout(() => this.props.history.push('/'))
+      }
+
+    render() {
         return (
-            <NavItem onClick={() => {
-                handleAuth.signout(() => history.push('/'))
-                }}>Sign out</NavItem>
-        )
+            <NavItem onClick={this.logout}>Sign out</NavItem>
+        ) 
     }
+}
 
-export default withRouter(Logout)
+function mapStateToProp({authedUser}){
+    return {
+        authedUser
+    }
+}
+
+export default withRouter(connect(mapStateToProp)(LogOut))

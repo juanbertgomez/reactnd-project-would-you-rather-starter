@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { questionVotes, questionAnswered } from '../utils/helper'
+import { questionAnswered } from '../utils/helper'
 import Question from './Question'
 import { Grid, Col, Row, Nav, NavItem} from 'react-bootstrap'
 
@@ -53,7 +53,7 @@ class Dashboard extends Component {
 
 function mapStateToProps({ authedUser, questions }) {
     const questionIds = questions ? Object.keys(questions)
-    .sort((a,b) => questionVotes(questions[b]).length - questionVotes(questions[a]).length )
+    .sort((a,b) => questions[b].timestamp - questions[a].timestamp )
     : null
 
     const questionList = []

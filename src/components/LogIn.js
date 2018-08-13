@@ -5,8 +5,7 @@ import { handleAuthedUser } from '../actions/authedUser'
 import {
     Redirect
   } from 'react-router-dom'
-
-  import { handleAuth } from '../utils/helper'
+import { handleAuth } from '../utils/helper'
 
   class LogIn extends Component {
     

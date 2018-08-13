@@ -1,22 +1,23 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import {
   BrowserRouter as Router,
   Route,
   Redirect,
-  Switch,
-  withRouter
+  Switch
 } from 'react-router-dom'
 import { LinkContainer } from 'react-router-bootstrap'
 import { connect } from 'react-redux'
 import { handleInitialData } from '../actions/shared'
 import LogIn from './LogIn'
+import LogOut from './LogOut'
 import { Nav, NavItem } from 'react-bootstrap'
 import { handleAuth } from '../utils/helper'
-import { handleAuthedUser } from '../actions/authedUser'
 import NewQuestion from './NewQuestion'
 import Dashboard from './Dashboard'
 import QuestionPage from './QuestionPage'
 import LeaderBoard from './LeaderBoard'
+import NoMatch from './NoMatch'
+import LoadingBar from 'react-redux-loading'
 
 const PrivateRoute = ({ component: Component, ...rest}) => (
   <Route {...rest} render={(props) => (
@@ -29,14 +30,6 @@ const PrivateRoute = ({ component: Component, ...rest}) => (
   )} />
 )
 
-const LogOutButton = withRouter(({ history, authedUser}) => (
-    
-   <NavItem onClick={() => {
-
-      this.props.dispatch(handleAuthedUser(authedUser))
-      handleAuth.signout(() => history.push('/'))
-      }}>Sign out</NavItem>
-    ))
 
 class App extends Component {
       
@@ -45,52 +38,49 @@ class App extends Component {
   } 
 
   render() {
-    const authed = handleAuth.isAuthenticated
-    const { name, avatar, authedUser } = this.props
+    
+    const { name, avatar } = this.props
     return (
-      <Router>
+        <Router>
+            <Fragment>
+                <LoadingBar />
+                {this.props.loading === true ? null : 
                 <div>
-                {authed !== false &&
-                    <div>
-                <Nav bsStyle="tabs" >
-                <LinkContainer to="/dashboard">
-                    <NavItem>Home</NavItem>
-                </LinkContainer>
-                <LinkContainer to="/new">
-                    <NavItem>New Question</NavItem>
-                </LinkContainer>
-                <LinkContainer to="/leaders">
-                    <NavItem>Leaders</NavItem>
-                </LinkContainer>
-                <NavItem disabled>Hello {name}
-                <img
-                    src={avatar}
-                    alt={`Avatar of ${name}`}
-                    className='nav-avatar'
-                />
-                </NavItem>
-                <LogOutButton authedUser = {authedUser}/>
-                </Nav>
+                { handleAuth.isAuthenticated !== false &&
+                <div>
+                    <Nav bsStyle="tabs" >
+                        <LinkContainer to="/dashboard">
+                            <NavItem>Home</NavItem>
+                        </LinkContainer>
+                        <LinkContainer to="/new">
+                            <NavItem>New Question</NavItem>
+                        </LinkContainer>
+                        <LinkContainer to="/leaderboard">
+                            <NavItem>Leaders</NavItem>
+                        </LinkContainer>
+                        <NavItem disabled>Hello {name}
+                        <img
+                            src={avatar}
+                            alt={`Avatar of ${name}`}
+                            className='nav-avatar'
+                        />
+                        </NavItem>
+                        <LogOut/>
+                    </Nav>
                 </div>
-                    
                   }
-                
-                    
                 <Switch>
-                    <Route exact path="/" render={() => (
-                        authed ? (
-                          <Redirect to="/dashboard"/>
-                        ) : (
-                            <Route path="/login" component={LogIn}/>
-                        )
-                      )}/>
                     <Route path="/login" component={LogIn}/>
                     <PrivateRoute path='/dashboard' component={Dashboard} />
                     <PrivateRoute path='/new' component={NewQuestion} />
-                    <PrivateRoute path='/question/:id' component={QuestionPage}/> 
-                    <PrivateRoute path='/leaders' component={LeaderBoard}/>
+                    <PrivateRoute path='/questions/:id' component={QuestionPage}/> 
+                    <PrivateRoute path='/leaderboard' component={LeaderBoard}/>
+                    <Redirect from='/' exact to='/dashboard'/>
+                    <Route component={NoMatch}/>
                 </Switch>
                 </div>
+                }
+                </Fragment>
             </Router>
     )
   }

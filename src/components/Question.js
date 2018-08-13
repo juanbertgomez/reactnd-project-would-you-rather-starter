@@ -16,7 +16,7 @@ class Question extends Component {
 
         return (
             <Row className='question'>
-                <Link to={`/question/${id}`}> 
+                <Link to={`/questions/${id}`}> 
                     <Jumbotron>
                         <img align = 'right'
                         src={avatar}
