@@ -12,11 +12,13 @@ import { handleAuth } from '../utils/helper'
     state = { 
         redirectToReferrer: false
     }
-    login = (e) => {
+    login = (eventKey) => {
 
-        e.preventDefault() 
-        const user = e.target.id 
-        this.props.dispatch(handleAuthedUser(user)) 
+        //e.preventDefault() 
+        //const user = e.target.id
+        //alert(`Alert from menu item.\neventKey: ${eventKey}`)
+        //debugger
+        this.props.dispatch(handleAuthedUser(eventKey)) 
 
         handleAuth.authenticate(() => {
           this.setState(() => ({
@@ -45,10 +47,11 @@ import { handleAuth } from '../utils/helper'
                     <DropdownButton
                     bsStyle="primary"
                     title="SIGN IN"
+                    id="dropdown-basic"
                     >
                     {userIds ? userIds.map((id) => 
                         (
-                            <MenuItem id = {id} onClick={this.login}>{users[id].name} </MenuItem>
+                            <MenuItem eventKey={id} onSelect={this.login}>{users[id].name} </MenuItem>
                         )) : null}
                     </DropdownButton>
                     </Col>

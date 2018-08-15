@@ -20,8 +20,9 @@ import NoMatch from './NoMatch'
 import LoadingBar from 'react-redux-loading'
 
 const PrivateRoute = ({ component: Component, ...rest}) => (
+    
   <Route {...rest} render={(props) => (
-      handleAuth.isAuthenticated === true
+    handleAuth.isAuthenticated !== false
       ? <Component {...props}/>
       :<Redirect to={{
           pathname:'/login',
@@ -39,15 +40,16 @@ class App extends Component {
 
   render() {
     
-    const { name, avatar } = this.props
+    const { name, avatar, authedUser } = this.props
     return (
         <Router>
             <Fragment>
                 <LoadingBar />
                 {this.props.loading === true ? null : 
                 <div>
-                { handleAuth.isAuthenticated !== false &&
-                <div>
+                    {authedUser !== null && 
+                    
+                    <div>
                     <Nav bsStyle="tabs" >
                         <LinkContainer to="/dashboard">
                             <NavItem>Home</NavItem>
@@ -67,14 +69,15 @@ class App extends Component {
                         </NavItem>
                         <LogOut/>
                     </Nav>
-                </div>
-                  }
+                    </div>
+                    }
+                
                 <Switch>
                     <Route path="/login" component={LogIn}/>
-                    <PrivateRoute path='/dashboard' component={Dashboard} />
-                    <PrivateRoute path='/add' component={NewQuestion} />
-                    <PrivateRoute path='/questions/:id' component={QuestionPage}/> 
-                    <PrivateRoute path='/leaderboard' component={LeaderBoard}/>
+                    <PrivateRoute path='/dashboard' component={Dashboard}  authedUser={this.props.authedUser}/>
+                    <PrivateRoute path='/add' component={NewQuestion}  authedUser={this.props.authedUser}/>
+                    <PrivateRoute path='/questions/:id' component={QuestionPage} authedUser={this.props.authedUser}/> 
+                    <PrivateRoute path='/leaderboard' component={LeaderBoard} authedUser={this.props.authedUser}/>
                     <Redirect from='/' exact to='/dashboard'/>
                     <Route component={NoMatch}/>
                 </Switch>

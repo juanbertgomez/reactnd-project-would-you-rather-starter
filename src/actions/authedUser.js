@@ -28,7 +28,7 @@ export function handleUnAutheUser(id) {
             const auth = Object.keys(users).filter(user => user === id)
             auth.length === 0 ?
             dispatch(setAuthedUser(id)):
-            dispatch(setAuthedUser({}))
+            dispatch(setAuthedUser(null))
         })
     }
 }
