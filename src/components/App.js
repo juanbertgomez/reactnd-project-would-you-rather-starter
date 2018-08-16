@@ -93,7 +93,7 @@ function mapStateToProps({authedUser, users}) {
   const user = users[authedUser]
   
   return {
-      authedUser: authedUser ? authedUser : null,
+      authedUser,
       userIds: users ? Object.keys(users): null ,
       name: user ? user.name :  null,
       avatar: user ? user.avatarURL : null,
