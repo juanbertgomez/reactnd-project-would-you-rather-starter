@@ -35,7 +35,7 @@ const PrivateRoute = ({ component: Component, ...rest}) => {
     )
 }
 
-const WrappedPrivateRoute = connect ()(PrivateRoute)
+const WrappedPrivateRoute = connect(mapStateToProps)(PrivateRoute)
 
 class App extends Component {
       
